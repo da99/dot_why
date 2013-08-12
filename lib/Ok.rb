@@ -45,7 +45,4 @@ module Ok
     scripts { script js_file }
   end
 
-
-
-
 end # === module
