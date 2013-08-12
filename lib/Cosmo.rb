@@ -23,7 +23,7 @@ end # === module
 
 
 module Dot_Why
-  class Layout
+  class Template
     include Cosmo
   end
 end # === module

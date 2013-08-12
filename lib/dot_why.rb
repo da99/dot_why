@@ -4,12 +4,13 @@ require 'erector'
 
 module Dot_Why
 
-  class Layout < Erector::Widget
+  class Template < Erector::Widget
 
-
-    def initialize *args
-      super
+    def initialize raw_file, *args
+      file = File.expand_path(raw_file).sub(".rb", "") + '.rb'
       @_blocks = {}
+      super(*args)
+      eval(File.read("#{file}"), nil, file, 1)
     end
 
     class << self
@@ -57,33 +58,10 @@ module Dot_Why
     end
 
     def content
-      rawtext "<!DOCTYPE html>"
-      html(:lang=>'en') do
-        head do
-          title { dot "title" }
-          meta(:"http-equiv"=>"Content-Type",  :content=>"text/html charet=UTF-8" )
-          meta(:"http-equiv"=>"Cache-Control", :content=>"no-cache, max-age=0, must-revalidate, no-store, max-stale=0, post-check=0, pre-check=0" )
-          link(:rel=>'shortcut icon', :href=>'/favicon.ico')
-
-          styles
-        end
-        body do
-          main
-        end
-      end
+      main
     end
 
-  end
-
-  class Template < Layout
-
-    def initialize file, *args
-      super(*args)
-      eval(File.read("#{file}"), nil, file, 1)
-    end
-
-  end
-
+  end # === Layout
 
 end # === module
 

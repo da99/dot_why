@@ -50,7 +50,7 @@ end # === module
 
 
 module Dot_Why
-  class Layout
+  class Template
     include Ok
   end
 end # === module

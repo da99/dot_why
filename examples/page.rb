@@ -2,7 +2,7 @@
 
 
 # --- Run this as:
-#     dot_why Diet_Dot examples/page.rb
+#     dot_why Diet_Dot ./examples/layout ./examples/page
 
 
 styles {

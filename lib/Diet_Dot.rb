@@ -45,7 +45,7 @@ end # === module
 
 
 module Dot_Why
-  class Layout
+  class Template
     include Diet_Dot
   end
 end # === module
