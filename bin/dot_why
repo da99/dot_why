@@ -7,6 +7,5 @@
 
 require("dot_why")
 
-Dot_Why.hi
 
 
