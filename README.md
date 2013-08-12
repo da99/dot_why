@@ -22,9 +22,11 @@ Install:
 This is not worthy to be listed in gem repos, so you have to
 install manually:
 
-    git clone https://github.com/da99/dot_why.git
-    cd dot_why
-    bin/install
+    gem install dot_why
+
+    # === For rbenv users: ===
+    rbenv rehash
+    # ========================
 
     cd /my_templates/whatever
     dot_why Diet_Dot ./my_layout ./my_template
