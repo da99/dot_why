@@ -5,12 +5,16 @@ module Cosmo
     "$#{name}"
   end
 
-  def var name
-    text inline_var(name)
+  def var name, &blok
+    if block_given?
+      var_block(name, &blok)
+    else
+      text inline_var(name)
+    end
   end
 
   def var_block name, args = ''
-    if args
+    if args && args.strip.length > 0
       args = "{#{args}}"
     end
 

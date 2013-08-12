@@ -3,6 +3,9 @@
 
 # --- Run this as:
 #     dot_why Diet_Dot ./examples/layout ./examples/page
+#
+#     Layout is optional:
+#     dot_why Diet_Dot                   ./examples/page
 
 
 styles {

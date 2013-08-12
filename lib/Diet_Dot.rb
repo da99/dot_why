@@ -27,6 +27,10 @@ module Diet_Dot
     text "[[=data.#{name}]]#{v || ""}"
   end
 
+  def var *args, &blok
+    dot(*args, &blok)
+  end
+
   def dot_array name
     text "[[~data." + name + " :v:i]]"
     yield
