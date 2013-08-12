@@ -63,21 +63,11 @@ module Dot_Why
           title { dot "title" }
           meta(:"http-equiv"=>"Content-Type",  :content=>"text/html charet=UTF-8" )
           meta(:"http-equiv"=>"Cache-Control", :content=>"no-cache, max-age=0, must-revalidate, no-store, max-stale=0, post-check=0, pre-check=0" )
-
           link(:rel=>'shortcut icon', :href=>'/favicon.ico')
-
-          styles {
-            link("/css/lenka-stabilo.css")
-            link("/css/circus.css")
-
-            link('/css/vanilla.reset.css')
-            link("/css/okdoki.css")
-            link("/css/forms.css")
-          }
 
           styles
         end
-        body(:class=>inline_rawdot("(data.is_customer) ? \"is_customer\" : \"is_stranger\"")) do
+        body do
           main
         end
       end
