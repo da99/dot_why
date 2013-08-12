@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = "Use of Erector to generate various types of templates."
   s.authors     = ["da99"]
   s.email       = 'da99@go.away'
-  s.files       = ["lib/dot_why.rb"]
+  s.files       = ["lib/dot_why.rb", "bin/dot_why"]
   s.homepage    =
     'http://www.github.com/da99/dot_why'
   s.license       = 'MIT'
