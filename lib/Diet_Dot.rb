@@ -42,3 +42,17 @@ module Diet_Dot
   end
 
 end # === module
+
+
+module Dot_Why
+  class Layout
+    include Diet_Dot
+  end
+end # === module
+
+
+
+
+
+
+

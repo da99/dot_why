@@ -7,5 +7,12 @@
 
 require("dot_why")
 
+mod  = ARGV[0]
+file = ARGV[1]
 
+require "#{mod}"
+
+
+page = Dot_Why::Template.new(file)
+puts(page.to_html(:prettyprint=>true))
 
