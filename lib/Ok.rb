@@ -46,3 +46,14 @@ module Ok
   end
 
 end # === module
+
+
+
+module Dot_Why
+  class Layout
+    include Ok
+  end
+end # === module
+
+
+

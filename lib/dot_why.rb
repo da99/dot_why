@@ -2,14 +2,10 @@
 
 require 'erector'
 
-
-require_relative "./Ok"
-
 module Dot_Why
 
   class Layout < Erector::Widget
 
-    include Ok
 
     def initialize *args
       super
@@ -100,7 +96,6 @@ module Dot_Why
 
 
 end # === module
-
 
 
 

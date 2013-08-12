@@ -7,10 +7,13 @@
 
 require("dot_why")
 
-mod  = ARGV[0]
-file = ARGV[1]
+args = ARGV.dup
+file = args.pop()
+mods = args
 
-require "#{mod}"
+mods.each do |m|
+  require "#{m}"
+end
 
 
 page = Dot_Why::Template.new(file)
