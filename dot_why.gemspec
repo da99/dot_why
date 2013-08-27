@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'dot_why'
-  s.version     = '0.1.0'
+  s.version     = `cat VERSION`
   s.date        = '2013-08-12'
   s.summary     = "Erector to create other templates."
   s.description = "Use of Erector to generate various types of templates."
