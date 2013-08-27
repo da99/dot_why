@@ -7,10 +7,9 @@ module Dot_Why
   class Template < Erector::Widget
 
     def initialize raw_file, *args
-      file = File.expand_path(raw_file).sub(".rb", "") + '.rb'
+      @file = file = File.expand_path(raw_file).sub(".rb", "") + '.rb'
       @_blocks = {}
       super(*args)
-      eval(File.read("#{file}"), nil, file, 1)
     end
 
     class << self
@@ -55,6 +54,10 @@ module Dot_Why
       else
         super
       end
+    end
+
+    def eval_main
+      eval(File.read("#{@file}"), nil, @file, 1)
     end
 
     def content
