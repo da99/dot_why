@@ -1,19 +1,14 @@
-
-Dot\_Why
-=======
-
-
-It uses Erector to create [Diet\_Dot](https://github.com/jamescostian/diet-dot)
-templates (nodejs/js) or [Cosmo](http://cosmo.luaforge.net/) templates (lua).
-
-
-You can create your own. Just look in the `lib` folder.
-
 Warning:
 =======
 
 You probably should make your life easier and use standard templates
 your framework provides.  This is too hard for you (and me).
+
+
+Dot\_Why
+=======
+
+My own personal way of doing templates.
 
 
 Install:

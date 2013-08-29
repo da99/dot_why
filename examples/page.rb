@@ -8,21 +8,23 @@
 #     dot_why Diet_Dot                   ./examples/page
 
 
-styles {
-  link("/css/lenka-stabilo.css")
-  link("/css/circus.css")
+def_section :styles
 
-  link('/css/vanilla.reset.css')
-  link("/css/okdoki.css")
-  link("/css/forms.css")
-}
+section :styles do
+  stylesheet("/css/lenka-stabilo.css")
+  stylesheet("/css/circus.css")
 
-styles {
-  link "/css/tapatio.css"
-}
+  stylesheet('/css/vanilla.reset.css')
+  stylesheet("/css/okdoki.css")
+  stylesheet("/css/forms.css")
+end
+
+section :styles do
+  stylesheet "/css/tapatio.css"
+end
 
 
-main {
+section(:main) {
   p {
     dot_array("arr") {
       dot_v "v", "\n"
@@ -30,14 +32,14 @@ main {
   }
 }
 
-main {
+section(:main) {
   p "after"
 }
 
 
-main(:top) {
+section :main, :top do
   p "before"
-}
+end
 
 
 

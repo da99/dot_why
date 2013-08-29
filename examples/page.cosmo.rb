@@ -8,7 +8,7 @@
 #     dot_why Cosmo                   ./examples/page
 
 
-main {
+section :main do
   div {
     var("name")
   }
@@ -17,5 +17,5 @@ main {
       p inline_var("my_cell")
     }
   }
-}
+end
 
