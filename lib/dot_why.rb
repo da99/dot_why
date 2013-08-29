@@ -6,13 +6,8 @@ module Dot_Why
 
   class Template < Erector::Widget
 
-    def initialize raw_file, *args
-      @file = file = File.expand_path(raw_file).sub(".rb", "") + '.rb'
-      @_blocks = {}
-      super(*args)
-    end
+    class << self # ================================================================
 
-    class << self
       def blocks *args
         args.each do |word|
           define_method(word.to_sym) do |pos = :bottom, &b|
@@ -20,9 +15,20 @@ module Dot_Why
           end
         end
       end
-    end
+
+    end # ==========================================================================
 
     blocks :main
+
+    def initialize raw_file, *args
+      @file = file = File.expand_path(raw_file).sub(".rb", "") + '.rb'
+      @_blocks = {}
+      super(*args)
+    end
+
+    def main_file
+      @file
+    end
 
     def block raw_name, pos = :bottom, *args, &b
       name = raw_name.to_sym
