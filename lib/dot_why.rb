@@ -74,7 +74,7 @@ module Dot_Why
     def view_name
       @view_name ||= begin
                        base = File.basename(main_file).sub(".rb", '')
-                       dir  = File.dirname(main_file)
+                       dir  = File.basename(File.dirname main_file)
                        "#{dir}/#{base}"
                      end
     end
