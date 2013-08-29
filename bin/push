@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# -*- bash -*-
+#
+#
+set -u -e -o pipefail
+
+gem build dot_why.gemspec
+gem push dot_why-$(cat VERSION).gem
+
+
+

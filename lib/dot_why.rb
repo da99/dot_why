@@ -46,7 +46,8 @@ module Dot_Why
       main
     end
 
-    def use_file name
+    def use_file raw_name
+      name = raw_name.split('?').first
       @files ||= {}
       raise "File already used: #{name.inspect}" if @files[name]
       @files[name] = true
@@ -81,14 +82,18 @@ module Dot_Why
 
     # === automate some tags =================================================================
 
+    def file_stamp
+      @file_stamp ||= Time.now.to_i
+    end
+
     def stylesheet name
       filename = if name[/\:/]
                    name
                  else
                    if name['/']
-                      "#{name}.css?#{STAMP}"
+                      "#{name}.css?#{file_stamp}"
                     else
-                      "/css/#{name}.css?#{STAMP}"
+                      "/css/#{name}.css?#{file_stamp}"
                     end
                  end
       link(:rel=>'stylesheet', :type=>'text/css', :href=>use_file(filename), :media=>'screen')
@@ -97,7 +102,7 @@ module Dot_Why
     def script *args
       if args.size == 1 && args.first.is_a?(String)
         name = args.first
-        full = "#{name}.js"
+        full = "#{name}.js?#{file_stamp}"
         super(:type=>"text/javascript", :src=>"#{use_file full}")
       else
         super
