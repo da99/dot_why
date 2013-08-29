@@ -51,7 +51,7 @@ module Dot_Why
       @files ||= {}
       raise "File already used: #{name.inspect}" if @files[name]
       @files[name] = true
-      name
+      raw_name
     end
 
     def section name, pos = :bottom, *args, &b
