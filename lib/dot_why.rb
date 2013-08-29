@@ -8,17 +8,25 @@ module Dot_Why
 
     class << self # ================================================================
 
-      def blocks *args
-        args.each do |word|
-          define_method(word.to_sym) do |pos = :bottom, &b|
-          block word, pos, &b
-          end
-        end
+      attr_reader :sections
+
+      def def_sections *args
+        @sections ||= {}
+        args.each { |v|
+          @sections[v] = true
+        }
       end
+
+      alias_method :def_section, :def_sections
 
     end # ==========================================================================
 
-    blocks :main
+    def_section :main
+
+    def def_sections *args
+      self.class.def_sections *args
+    end
+    alias_method :def_section, :def_sections
 
     def initialize raw_file, *args
       @file = file = File.expand_path(raw_file).sub(".rb", "") + '.rb'
@@ -30,44 +38,70 @@ module Dot_Why
       @file
     end
 
-    def block raw_name, pos = :bottom, *args, &b
-      name = raw_name.to_sym
-      if (b)
-        @_blocks[name] ||= []
-        if (pos == :top)
-          @_blocks[name].unshift(b)
-        elsif (pos == :replace)
-          @_blocks[name] = [b]
-        else
-          @_blocks[name].push(b)
-        end
-      else
-        (@_blocks[name] || []).each  do |bl|
-          bl.call
-        end
-      end
-    end
-
-    def styles *args, &b
-      @_link_type = :css
-      block :styles, *args, &b
-      @_link_type = nil
-    end
-
-    def link *args
-      if (@_link_type == :css && args.length == 1 && args[0].instance_of?(String))
-        super(:rel=>"stylesheet", :type=>"text/css", :href=>args[0])
-      else
-        super
-      end
-    end
-
     def eval_main
       eval(File.read("#{@file}"), nil, @file, 1)
     end
 
     def content
       main
+    end
+
+    def use_file name
+      @files ||= {}
+      raise "File already used: #{name.inspect}" if @files[name]
+      @files[name] = true
+      name
+    end
+
+    def section name, pos = :bottom, *args, &b
+      raise "Section not defined: #{name}" if !self.class.sections[name]
+
+      if not block_given?
+        (@_blocks[name] || []).each  { |bl| bl.call }
+        return
+      end
+
+      @_blocks[name] ||= []
+      if (pos == :top)
+        @_blocks[name].unshift(b)
+      elsif (pos == :replace)
+        @_blocks[name] = [b]
+      else
+        @_blocks[name].push(b)
+      end
+    end # === def section
+
+    def view_name
+      @view_name ||= begin
+                       base = File.basename(main_file).sub(".rb", '')
+                       dir  = File.dirname(main_file)
+                       "#{dir}/#{base}"
+                     end
+    end
+
+    # === automate some tags =================================================================
+
+    def stylesheet name
+      filename = if name[/\:/]
+                   name
+                 else
+                   if name['/']
+                      "#{name}.css?#{STAMP}"
+                    else
+                      "/css/#{name}.css?#{STAMP}"
+                    end
+                 end
+      link(:rel=>'stylesheet', :type=>'text/css', :href=>use_file(filename), :media=>'screen')
+    end
+
+    def script *args
+      if args.size == 1 && args.first.is_a?(String)
+        name = args.first
+        full = "#{name}.js"
+        super(:type=>"text/javascript", :src=>"#{use_file full}")
+      else
+        super
+      end
     end
 
   end # === Layout
