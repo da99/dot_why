@@ -39,7 +39,20 @@ module Dot_Why
     end
 
     def eval_main
-      eval(File.read("#{@file}"), nil, @file, 1)
+      eval(File.read(@file.to_s), nil, @file, 1)
+    end
+
+    def partial file_or_dir, file = nil
+      file = if file
+        dir = Dir.exist?(file_or_dir) ?
+          file_or_dir :
+          Dir.dirname(file_or_dir)
+        File.join(dir, file)
+      else
+        file_or_dir
+      end
+
+      eval(File.read(file), nil, file, 1)
     end
 
     def content
