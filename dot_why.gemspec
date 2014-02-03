@@ -16,4 +16,5 @@ Gem::Specification.new do |s|
   # s.require_paths = ["lib"]
   s.add_runtime_dependency 'erector'
   s.add_runtime_dependency 'active_support'
+  s.add_development_dependency 'bacon'
 end
