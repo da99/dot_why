@@ -38,5 +38,19 @@ You are on your own. I barely have time to add all the features
 I want.
 
 
+Template Guide
+==============
+
+* **section :sym do ... end**:
+  Add something to a section.  Can be used multiple times.
+  It accumulates the content in the block.
+
+* **partial "path/to/file"**:
+  Reads the file (*File.read*) and evals it.
+
+* **partial "path/to/file/or/dir", "sub/path/to/file**:
+  Uses the first argument as the starting point to find the
+  template. The first argument can be a file (e.g. *__FILE__*)
+  or dir. If it is a file, it will use the dir of the path (*File.dirname*).
 
 
