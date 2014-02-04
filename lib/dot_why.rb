@@ -46,7 +46,7 @@ module Dot_Why
       file = if file
         dir = Dir.exist?(file_or_dir) ?
           file_or_dir :
-          Dir.dirname(file_or_dir)
+          File.dirname(file_or_dir)
         File.join(dir, file)
       else
         file_or_dir

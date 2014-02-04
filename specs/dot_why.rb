@@ -31,4 +31,12 @@ describe "partial()" do
     .should == "<p>partial 2</p>"
   end
 
+  it "grabs/evals 2nd file based on dir of file in first arg (eg File.dirname)" do
+    f = "/tmp/dot_why/partial.3.rb"
+    File.open(@file, 'w') { |file| file.write %~ partial "#{f}", "/partial.3.rb" ~ }
+    File.open(f, 'w')     { |file| file.write %~ p "partial 3" ~ }
+    @page.to_html(:prettyprint=>true).strip
+    .should == "<p>partial 3</p>"
+  end
+
 end # === describe partial ===
