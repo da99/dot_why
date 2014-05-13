@@ -14,6 +14,6 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
 
   # s.require_paths = ["lib"]
-  s.add_runtime_dependency 'erector'
-  s.add_development_dependency 'bacon'
+  s.add_runtime_dependency 'erector', '~> 0'
+  s.add_development_dependency 'bacon', '~> 0'
 end
